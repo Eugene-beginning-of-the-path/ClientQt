@@ -18,11 +18,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void sendToServer(QString message);
 
 private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_lineEdit_returnPressed();
 
 private:
     Ui::MainWindow *ui;
