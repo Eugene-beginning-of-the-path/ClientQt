@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
     socket = new QTcpSocket;
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
@@ -15,7 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     //слот slotReadyRead срабатывает, когда срабатывает сигнал readyRead, который исходит от сокета,
     //как только он получает какую то инфу на прием от сервера (sendToClient)
 
+    //while (socket->waitForConnected(30000))
     socket->connectToHost("127.0.0.1", 2323);
+    ui->textBrowser->append(QTime::currentTime().toString());
 }
 
 MainWindow::~MainWindow()
@@ -29,9 +30,10 @@ void MainWindow::sendToServer(QString message)
     QDataStream out(&data, QDataStream::WriteOnly);
     out.setVersion(QDataStream::Qt_6_2);
 
-    out << QTime::currentTime() << message;
+    out << message;
     socket->write(data);
     ui->lineEdit->clear();
+
 }
 
 void MainWindow::slotReadyRead()
@@ -58,16 +60,27 @@ void MainWindow::slotReadyRead()
 
 void MainWindow::slotDisconnect()
 {
+    qDebug() << QTime::currentTime().toString();
     socket->deleteLater();
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    if (ui->lineEdit->text() == ' ' || ui->lineEdit->text().size() == 0)
+    {
+        ui->lineEdit->clear();
+        return;
+    }
     sendToServer(ui->lineEdit->text());
 }
 
 void MainWindow::on_lineEdit_returnPressed()
 {
+    if (ui->lineEdit->text() == ' ' || ui->lineEdit->text().isEmpty() == true)
+    {
+        ui->lineEdit->clear();
+        return;
+    }
     sendToServer(ui->lineEdit->text());
 }
 

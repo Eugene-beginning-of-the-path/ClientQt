@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>312</width>
+    <width>336</width>
     <height>449</height>
    </rect>
   </property>
@@ -25,21 +25,27 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>271</width>
+         <width>301</width>
          <height>391</height>
         </rect>
+       </property>
+       <property name="tabPosition">
+        <enum>QTabWidget::North</enum>
        </property>
        <property name="currentIndex">
         <number>1</number>
        </property>
-       <widget class="QWidget" name="tab_2">
+       <property name="elideMode">
+        <enum>Qt::ElideNone</enum>
+       </property>
+       <widget class="QWidget" name="tab_1">
         <attribute name="title">
-         <string>Tab 2</string>
+         <string>Tab 1</string>
         </attribute>
        </widget>
        <widget class="QWidget" name="tab">
         <attribute name="title">
-         <string>Tab 1</string>
+         <string>Tab 2</string>
         </attribute>
         <widget class="QLineEdit" name="lineEdit">
          <property name="geometry">
@@ -79,7 +85,7 @@
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>243</width>
+           <width>241</width>
            <height>299</height>
           </rect>
          </property>
