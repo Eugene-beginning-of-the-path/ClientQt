@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTcpServer>
 #include <QTcpSocket>
-
+#include <QTime>
 
 
 QT_BEGIN_NAMESPACE
@@ -21,8 +21,6 @@ public:
     void sendToServer(QString message);
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
 
     void on_lineEdit_returnPressed();

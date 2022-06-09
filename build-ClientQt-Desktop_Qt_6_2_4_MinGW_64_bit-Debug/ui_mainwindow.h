@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
@@ -28,16 +29,16 @@ public:
     QGridLayout *gridLayout_2;
     QGroupBox *groupBox;
     QGridLayout *gridLayout;
+    QLabel *label;
     QTextBrowser *textBrowser;
     QLineEdit *lineEdit;
     QPushButton *pushButton_2;
-    QPushButton *pushButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(316, 300);
+        MainWindow->resize(285, 400);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout_2 = new QGridLayout(centralwidget);
@@ -46,15 +47,20 @@ public:
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        label = new QLabel(groupBox);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        gridLayout->addWidget(label, 0, 0, 1, 1);
+
         textBrowser = new QTextBrowser(groupBox);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
 
-        gridLayout->addWidget(textBrowser, 0, 0, 1, 2);
+        gridLayout->addWidget(textBrowser, 1, 0, 1, 2);
 
         lineEdit = new QLineEdit(groupBox);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
 
-        gridLayout->addWidget(lineEdit, 1, 0, 1, 1);
+        gridLayout->addWidget(lineEdit, 2, 0, 1, 1);
 
         pushButton_2 = new QPushButton(groupBox);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
@@ -67,15 +73,7 @@ public:
         font.setKerning(true);
         pushButton_2->setFont(font);
 
-        gridLayout->addWidget(pushButton_2, 1, 1, 1, 1);
-
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QFont font1;
-        font1.setBold(true);
-        pushButton->setFont(font1);
-
-        gridLayout->addWidget(pushButton, 2, 0, 1, 2);
+        gridLayout->addWidget(pushButton_2, 2, 1, 1, 1);
 
 
         gridLayout_2->addWidget(groupBox, 0, 0, 1, 1);
@@ -91,8 +89,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         groupBox->setTitle(QString());
+        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "-->", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Connection", nullptr));
     } // retranslateUi
 
 };
