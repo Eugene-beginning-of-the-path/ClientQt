@@ -246,6 +246,10 @@ debug/moc_mainwindow.cpp: ../ClientQt/mainwindow.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/qhostaddress.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/QTcpSocket \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/qtcpsocket.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/QTime \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qdatetime.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qcalendar.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qlocale.h \
 		debug/moc_predefs.h \
 		../../../../Qt/6.2.4/mingw_64/bin/moc.exe
 	D:\Qt\6.2.4\mingw_64\bin\moc.exe $(DEFINES) --include D:/Programming/QtCodding/ClientQt/build-ClientQt-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/Qt/6.2.4/mingw_64/mkspecs/win32-g++ -ID:/Programming/QtCodding/ClientQt/ClientQt -ID:/Qt/6.2.4/mingw_64/include -ID:/Qt/6.2.4/mingw_64/include/QtWidgets -ID:/Qt/6.2.4/mingw_64/include/QtGui -ID:/Qt/6.2.4/mingw_64/include/QtNetwork -ID:/Qt/6.2.4/mingw_64/include/QtCore -I. -ID:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -ID:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -ID:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -ID:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -ID:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\ClientQt\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -411,6 +415,10 @@ debug/main.o: ../ClientQt/main.cpp ../ClientQt/mainwindow.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/qhostaddress.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/QTcpSocket \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/qtcpsocket.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/QTime \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qdatetime.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qcalendar.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtWidgets/QApplication \
 		../../../../Qt/6.2.4/mingw_64/include/QtWidgets/qapplication.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtCore/qcoreapplication.h \
@@ -430,7 +438,6 @@ debug/main.o: ../ClientQt/main.cpp ../ClientQt/mainwindow.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtCore/qpromise.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtGui/qguiapplication.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtGui/qinputmethod.h \
-		../../../../Qt/6.2.4/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtGui/qguiapplication_platform.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\ClientQt\main.cpp
 
@@ -572,6 +579,10 @@ debug/mainwindow.o: ../ClientQt/mainwindow.cpp ../ClientQt/mainwindow.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/qhostaddress.h \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/QTcpSocket \
 		../../../../Qt/6.2.4/mingw_64/include/QtNetwork/qtcpsocket.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/QTime \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qdatetime.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qcalendar.h \
+		../../../../Qt/6.2.4/mingw_64/include/QtCore/qlocale.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\ClientQt\mainwindow.cpp
 

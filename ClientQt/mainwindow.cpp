@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+//int MainWindow::counter = 0;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -11,6 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnect);
     //слот slotReadyRead срабатывает, когда срабатывает сигнал readyRead, который исходит от сокета,
     //как только он получает какую то инфу на прием от сервера (sendToClient)
+
+    //while (socket->waitForConnected(30000))
+    socket->connectToHost("127.0.0.1", 2323);
+    ui->textBrowser->append(QTime::currentTime().toString());
 }
 
 MainWindow::~MainWindow()
@@ -21,18 +27,13 @@ MainWindow::~MainWindow()
 void MainWindow::sendToServer(QString message)
 {
     data.clear();
-    QDataStream in(&data, QDataStream::WriteOnly);
-    in.setVersion(QDataStream::Qt_6_2);
-    in << message;
+    QDataStream out(&data, QDataStream::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_2);
+
+    out << message;
     socket->write(data);
     ui->lineEdit->clear();
-}
 
-
-void MainWindow::on_pushButton_clicked()
-{
-    socket->connectToHost("127.0.0.1", 2323);
-    //sendToServer("Message from Client to Server");
 }
 
 void MainWindow::slotReadyRead()
@@ -43,8 +44,13 @@ void MainWindow::slotReadyRead()
     {
         data.clear();
         QString message;
-        in >> message;
-        ui->textBrowser->append(message);
+        QTime time;
+
+        in >> time >> message;
+//        ui->textBrowser->append(time.toString());
+//        ui->textBrowser->append("\n");
+//        ui->textBrowser->append("111");
+        ui->textBrowser->append(time.toString() + '\n' + message);
     }
     else
     {
@@ -54,19 +60,27 @@ void MainWindow::slotReadyRead()
 
 void MainWindow::slotDisconnect()
 {
+    qDebug() << QTime::currentTime().toString();
     socket->deleteLater();
 }
 
-
-
 void MainWindow::on_pushButton_2_clicked()
 {
+    if (ui->lineEdit->text() == ' ' || ui->lineEdit->text().size() == 0)
+    {
+        ui->lineEdit->clear();
+        return;
+    }
     sendToServer(ui->lineEdit->text());
 }
 
-
 void MainWindow::on_lineEdit_returnPressed()
 {
+    if (ui->lineEdit->text() == ' ' || ui->lineEdit->text().isEmpty() == true)
+    {
+        ui->lineEdit->clear();
+        return;
+    }
     sendToServer(ui->lineEdit->text());
 }
 
