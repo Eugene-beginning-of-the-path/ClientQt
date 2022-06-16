@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tabWidget->tabBar()->hide(); //чтобы спрятать tab bar'ы у виджета
+    ui->tabWidget->setCurrentIndex(0);
     socket = new QTcpSocket;
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnect);
@@ -16,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //while (socket->waitForConnected(30000))
     socket->connectToHost("127.0.0.1", 2323);
-    ui->textBrowser->append(QTime::currentTime().toString());
+    //ui->textBrowser->append(QTime::currentTime().toString());
 }
 
 MainWindow::~MainWindow()
@@ -30,6 +32,9 @@ void MainWindow::sendToServer(QString message)
     QDataStream out(&data, QDataStream::WriteOnly);
     out.setVersion(QDataStream::Qt_6_2);
 
+    //вот здесь должна быть запись в БД
+
+    message = nickname + " \n " + message;
     out << message;
     socket->write(data);
     ui->lineEdit->clear();
@@ -47,10 +52,9 @@ void MainWindow::slotReadyRead()
         QTime time;
 
         in >> time >> message;
-//        ui->textBrowser->append(time.toString());
-//        ui->textBrowser->append("\n");
-//        ui->textBrowser->append("111");
-        ui->textBrowser->append(time.toString() + '\n' + message);
+        //ui->textBrowser->append(time.toString() + " - " + nickname + '\n' + message);
+        ui->textBrowser->append(time.toString() + ' ' + message);
+        ui->textBrowser->append((QString)' ');
     }
     else
     {
@@ -82,5 +86,15 @@ void MainWindow::on_lineEdit_returnPressed()
         return;
     }
     sendToServer(ui->lineEdit->text());
+}
+
+
+void MainWindow::on_signIn_clicked()
+{
+    if (!ui->login->text().isEmpty())
+        ui->nickName->setText(ui->login->text());
+
+    nickname = ui->login->text();
+    ui->tabWidget->setCurrentIndex(1);
 }
 

@@ -5,7 +5,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QTime>
-
+#include <QTabBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,10 +25,13 @@ private slots:
 
     void on_lineEdit_returnPressed();
 
+    void on_signIn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTcpSocket* socket;
     QByteArray data;
+    QString nickname;
 
 public slots:
     void slotReadyRead();
