@@ -34,10 +34,9 @@ void MainWindow::sendToServer(QString message)
 
     //вот здесь должна быть запись в БД
 
-    message = nickname + " \n " + message;
+    message = nickname + ": " + message;
     out << message;
     socket->write(data);
-    ui->lineEdit->clear();
 
 }
 
@@ -49,12 +48,15 @@ void MainWindow::slotReadyRead()
     {
         data.clear();
         QString message;
-        QTime time;
+        QTime time = QTime::currentTime();
 
         in >> time >> message;
+        qDebug() << message;
+        //in >> message;
+        ui->textBrowser->append("\n" + time.toString() + "\n" + message);
         //ui->textBrowser->append(time.toString() + " - " + nickname + '\n' + message);
-        ui->textBrowser->append(time.toString() + ' ' + message);
-        ui->textBrowser->append((QString)' ');
+        //ui->textBrowser->append(time.toString() + ' ' + message);
+        //ui->textBrowser->append((QString)' ');
     }
     else
     {
@@ -76,6 +78,7 @@ void MainWindow::on_pushButton_2_clicked()
         return;
     }
     sendToServer(ui->lineEdit->text());
+    ui->lineEdit->clear();
 }
 
 void MainWindow::on_lineEdit_returnPressed()
@@ -86,6 +89,7 @@ void MainWindow::on_lineEdit_returnPressed()
         return;
     }
     sendToServer(ui->lineEdit->text());
+    ui->lineEdit->clear();
 }
 
 
@@ -98,3 +102,4 @@ void MainWindow::on_signIn_clicked()
     ui->tabWidget->setCurrentIndex(1);
 }
 
+//тест коммита на ветке x
